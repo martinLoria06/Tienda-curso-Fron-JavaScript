@@ -4,6 +4,7 @@ const menuHamIcon = document.querySelector(".menu");
 const mobileMenu = document.querySelector(".mobile-menu");
 const menuCarritoIcon = document.querySelector(".navbar-shopping-cart");
 const aside = document.querySelector(".product-detail");
+const cardContainer = document.querySelector(".cards-container");
 
 menuEmail.addEventListener("click", toggleDesktopMenu);
 menuHamIcon.addEventListener("click", toggleMobileMenu);
@@ -38,8 +39,8 @@ function toggleCarritoAside() {
     mobileMenu.classList.add("oculto");
   }
 
-  if(!isDestockMenu){
-    desktopMenu.classList.add('inactive');
+  if (!isDestockMenu) {
+    desktopMenu.classList.add("inactive");
   }
   aside.classList.toggle("inactive");
 
@@ -63,3 +64,63 @@ menuEmail.addEventListener('click',()=>{
 menuHamIcon.addEventListener('click',()=>{
     ocultar(mobileMenu);
 }); */
+
+const productList = [];
+productList.push({
+  name: "Bike",
+  price: 120,
+  image:
+    "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+});
+productList.push({
+  name: "Pantalla",
+  price: 1999,
+  image:
+    "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+});
+productList.push({
+  name: "Laptop",
+  price: 6250,
+  image:
+    "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+});
+
+function renderProcducs(productList){
+    for (product of productList) {
+        const productCard = document.createElement("div");
+        productCard.classList.add("product-card");
+      
+        const img = document.createElement("img");
+        img.setAttribute("src", product.image);
+      
+        const producInfo = document.createElement("div");
+        producInfo.classList.add("product-info");
+      
+        const producInfoDiv = document.createElement("div");
+        
+        const producPrice = document.createElement("p");
+        producPrice.innerText = '$' + product.price;
+      
+        const producName = document.createElement("p");
+        producName.innerText = product.name;
+      
+        producInfoDiv.append(producPrice,producName);
+      
+        const producInfoFigure  = document.createElement("figure");
+      
+        const productImgCard  = document.createElement("img");
+        productImgCard.setAttribute("src", './icons/bt_add_to_cart.svg');
+      
+        producInfoFigure.appendChild(productImgCard);
+      
+        producInfo.append(producInfoDiv, producInfoFigure);
+      
+        productCard.append(img,producInfo);
+      
+        cardContainer.appendChild(productCard);
+      
+      }
+      
+}
+
+renderProcducs(productList);
